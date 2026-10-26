@@ -57,37 +57,13 @@ export function setupComments(api, isReady) {
     state.requestId = crypto.randomUUID();
   }
   input.addEventListener("input", saveDraft);
-  function reference(id) {
-    const target = document.querySelector(`#comment-${id}`);
-    if (!target) return;
-    target.scrollIntoView({ block: "nearest" });
-    target.focus({ preventScroll: true });
-    target.classList.add("referenced");
-    setTimeout(() => target.classList.remove("referenced"), 1500);
-  }
   function render() {
-    const ids = new Set(comments.map((c) => c.id));
     list.replaceChildren();
     for (const comment of comments) {
       const row = element("article", "comment");
       row.id = `comment-${comment.id}`;
       row.tabIndex = -1;
       const meta = element("div", "comment-meta");
-      const number = element(
-        "button",
-        "inline-button comment-number",
-        `No.${comment.id}`,
-      );
-      number.type = "button";
-      number.setAttribute("aria-label", `Quote comment ${comment.id}`);
-      const reply = () => {
-        if (stateFor(active.id).posting) return;
-        input.value = `${input.value.trimEnd()}${input.value.trim() ? "\n" : ""}>>${comment.id}\n`;
-        saveDraft();
-        input.focus();
-        input.setSelectionRange(input.value.length, input.value.length);
-      };
-      number.addEventListener("click", reply);
       const time = element(
         "time",
         "",
@@ -99,35 +75,9 @@ export function setupComments(api, isReady) {
         }),
       );
       time.dateTime = new Date(comment.created_at).toISOString();
-      meta.append(element("strong", "", "Anonymous"), number, time);
-      const body = element("p", "comment-body");
-      for (const [index, line] of comment.body.split("\n").entries()) {
-        if (index) body.append("\n");
-        const container = element(
-          "span",
-          line.startsWith(">") && !line.startsWith(">>") ? "quoted-line" : "",
-        );
-        let end = 0;
-        for (const match of line.matchAll(/>>([1-9]\d{0,14})\b/g)) {
-          const id = Number(match[1]);
-          container.append(line.slice(end, match.index));
-          if (ids.has(id)) {
-            const link = element("button", "quote-ref", match[0]);
-            link.type = "button";
-            link.setAttribute("aria-label", `Go to comment ${id}`);
-            link.addEventListener("click", () => reference(id));
-            container.append(link);
-          } else container.append(match[0]);
-          end = match.index + match[0].length;
-        }
-        container.append(line.slice(end));
-        body.append(container);
-      }
+      meta.append(element("strong", "", "Anonymous"), time);
+      const body = element("p", "comment-body", comment.body);
       const actions = element("div", "comment-actions");
-      const replyButton = element("button", "inline-button", "Reply");
-      replyButton.type = "button";
-      replyButton.setAttribute("aria-label", `Reply to comment ${comment.id}`);
-      replyButton.addEventListener("click", reply);
       const report = element("a", "", "Report");
       const reportUrl = new URL(
         "https://github.com/ThatXliner/claudeslop/issues/new",
@@ -140,9 +90,9 @@ export function setupComments(api, isReady) {
       report.rel = "noopener noreferrer";
       report.setAttribute(
         "aria-label",
-        `Report comment ${comment.id} on GitHub (opens in a new tab)`,
+        "Report this comment on GitHub (opens in a new tab)",
       );
-      actions.append(replyButton, report);
+      actions.append(report);
       row.append(meta, body, actions);
       list.append(row);
     }
@@ -228,7 +178,9 @@ export function setupComments(api, isReady) {
           comments.push(data.comment);
         render();
         const refreshed = await load();
-        reference(data.comment.id);
+        document
+          .querySelector(`#comment-${data.comment.id}`)
+          ?.scrollIntoView({ block: "nearest" });
         if (refreshed) {
           status.textContent = "Comment posted.";
           status.hidden = false;

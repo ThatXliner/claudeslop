@@ -103,7 +103,7 @@ Play style describes the usual session: Quick play, Arcade-style, Daily (Wordle-
 
 ## Anonymous comments
 
-Every game has a flat comment thread. Posts show Anonymous, a server-issued comment number, and a timestamp. Reply inserts `>>123`; references to loaded comments in the same thread scroll to that post. Single-`>` quoted lines display in green. Text is rendered literally, with no HTML or image uploads. Threads load the latest 50 comments in chronological order; Older comments fetches earlier pages.
+Every game has a flat comment thread. Posts show Anonymous and a timestamp, followed by plain text and a Report link. All text is displayed literally, including lines beginning with `>` or `>>`. Threads load the latest 50 comments in chronological order; Older comments fetches earlier pages. Comment IDs are internal identifiers for storage and moderation, not displayed post numbers.
 
 Comments are public. No commenter names or accounts are stored. The existing anonymous browser cookie and temporary hashed network identifiers enforce posting limits: ten comments per ten minutes per browser, thirty per ten minutes per network identifier. Comments are limited to 2,000 characters. Retrying the same post does not duplicate it. Drafts stay in memory while switching or closing threads, and disappear on a page reload.
 

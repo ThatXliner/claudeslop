@@ -1,4 +1,4 @@
-import { setupComments } from "/comments.js?v=1";
+import { setupComments } from "/comments.js?v=2";
 
 const feed = document.querySelector("#feed");
 const dialog = document.querySelector("#submit-dialog");

@@ -754,21 +754,6 @@ textarea::placeholder {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.quote-ref {
-  border: 0;
-  background: none;
-  padding: 0;
-  color: var(--accent);
-  font: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.quoted-line {
-  color: #42702a;
-}
-.comment.referenced {
-  background: var(--tint);
-}
 #comment-form {
   flex-shrink: 0;
   gap: 10px;
@@ -797,7 +782,6 @@ textarea::placeholder {
   .comment-count {
     min-height: 36px;
   }
-  .comment-number,
   .comment-actions > * {
     min-height: 44px;
   }
