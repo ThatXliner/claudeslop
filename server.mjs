@@ -103,6 +103,7 @@ function webUrl(value, label, optional = false) {
 const assets = new Map([
   ["/", "index.html"],
   ["/app.js", "app.js"],
+  ["/comments.js", "comments.js"],
   ["/style.css", "style.css"],
   ["/favicon.svg", "favicon.svg"],
 ]);
@@ -154,7 +155,7 @@ const server = createServer(async (req, res) => {
           sort === "new"
             ? "g.created_at DESC, g.id DESC"
             : "((count(v.voter)+1.0) / pow((max(0, (? - g.created_at)/3600000.0)+2),1.35)) DESC, g.id DESC";
-        const query = `SELECT g.*,count(v.voter) AS points, max(CASE WHEN v.voter=? THEN 1 ELSE 0 END) AS voted FROM games g LEFT JOIN votes v ON v.game_id=g.id WHERE g.hidden=0 GROUP BY g.id ORDER BY ${order} LIMIT 31 OFFSET ?`;
+        const query = `SELECT g.*,(SELECT count(*) FROM comments c WHERE c.game_id=g.id AND c.hidden=0) AS comment_count,count(v.voter) AS points, max(CASE WHEN v.voter=? THEN 1 ELSE 0 END) AS voted FROM games g LEFT JOIN votes v ON v.game_id=g.id WHERE g.hidden=0 GROUP BY g.id ORDER BY ${order} LIMIT 31 OFFSET ?`;
         const rows = db
           .prepare(query)
           .all(
@@ -168,6 +169,86 @@ const server = createServer(async (req, res) => {
       const ip = sign(
         `ip:${process.env.TRUST_PROXY === "true" ? req.headers["cf-connecting-ip"] || req.socket.remoteAddress : req.socket.remoteAddress}`,
       );
+      const thread = /^\/api\/games\/(\d+)\/comments$/.exec(url.pathname);
+      if (thread && ["GET", "POST"].includes(req.method)) {
+        const gameId = Number(thread[1]);
+        if (
+          !db
+            .prepare("SELECT id FROM games WHERE id=? AND hidden=0")
+            .get(gameId)
+        )
+          fail(404, "This game is no longer listed.");
+        const countComments = () =>
+          db
+            .prepare(
+              "SELECT count(*) AS n FROM comments WHERE game_id=? AND hidden=0",
+            )
+            .get(gameId).n;
+        if (req.method === "GET") {
+          const rawBefore = url.searchParams.get("before");
+          const before =
+            rawBefore === null ? Number.MAX_SAFE_INTEGER : Number(rawBefore);
+          if (!Number.isSafeInteger(before) || before < 1)
+            fail(400, "Invalid comment cursor.");
+          const rows = db
+            .prepare(
+              "SELECT id,body,created_at FROM comments WHERE game_id=? AND hidden=0 AND id<? ORDER BY id DESC LIMIT 51",
+            )
+            .all(gameId, before);
+          return json(res, 200, {
+            comments: rows.slice(0, 50).reverse(),
+            more: rows.length > 50,
+            count: countComments(),
+          });
+        }
+        const data = await body(req);
+        if (data?.website) fail(400, "Could not accept that comment.");
+        const message = text(data?.body, "Comment", 1, 2000);
+        if (
+          typeof data?.request_id !== "string" ||
+          !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(
+            data.request_id,
+          )
+        )
+          fail(400, "Please refresh the page and try again.");
+        const requestKey = sign(
+          `comment:${gameId}:${voter}:${data.request_id}`,
+        );
+        const existing = db
+          .prepare(
+            "SELECT id,body,created_at,hidden FROM comments WHERE request_key=?",
+          )
+          .get(requestKey);
+        if (existing) {
+          if (existing.hidden) fail(409, "This comment was removed.");
+          if (existing.body !== message)
+            fail(409, "This comment changed. Edit it and try again.");
+          return json(res, 200, {
+            comment: {
+              id: existing.id,
+              body: existing.body,
+              created_at: existing.created_at,
+            },
+            count: countComments(),
+          });
+        }
+        limit(`comment:${voter}`, 10, 600000);
+        limit(`comment:${ip}`, 30, 600000);
+        const createdAt = Date.now();
+        const result = db
+          .prepare(
+            "INSERT INTO comments (game_id,body,created_at,request_key) VALUES (?,?,?,?)",
+          )
+          .run(gameId, message, createdAt, requestKey);
+        return json(res, 201, {
+          comment: {
+            id: Number(result.lastInsertRowid),
+            body: message,
+            created_at: createdAt,
+          },
+          count: countComments(),
+        });
+      }
       if (req.method === "POST" && url.pathname === "/api/games") {
         const data = await body(req);
         if (!data || typeof data !== "object")

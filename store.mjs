@@ -28,6 +28,15 @@ export function openStore(
       game_id INTEGER NOT NULL REFERENCES games(id) ON DELETE CASCADE,
       voter TEXT NOT NULL, PRIMARY KEY(game_id, voter)
     );
+    CREATE TABLE IF NOT EXISTS comments (
+      id INTEGER PRIMARY KEY,
+      game_id INTEGER NOT NULL REFERENCES games(id) ON DELETE CASCADE,
+      body TEXT NOT NULL,
+      created_at INTEGER NOT NULL,
+      request_key TEXT NOT NULL UNIQUE,
+      hidden INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE INDEX IF NOT EXISTS comments_game ON comments(game_id, hidden, id);
     CREATE TABLE IF NOT EXISTS limits (
       bucket TEXT NOT NULL, at INTEGER NOT NULL
     );

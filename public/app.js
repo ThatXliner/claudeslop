@@ -1,3 +1,5 @@
+import { setupComments } from "/comments.js?v=1";
+
 const feed = document.querySelector("#feed");
 const dialog = document.querySelector("#submit-dialog");
 const form = document.querySelector("#submit-form");
@@ -48,6 +50,8 @@ function externalLink(url, className, text) {
   link.rel = "noopener noreferrer";
   return link;
 }
+const commentButton = setupComments(api, () => Boolean(session));
+
 function renderGame(game) {
   const row = el("article", "game");
   row.id = `game-${game.id}`;
@@ -126,7 +130,7 @@ function renderGame(game) {
     note.append(" ", externalLink(game.source, "", "Creator source ↗"));
   }
   details.append(note);
-  metadata.push(details);
+  metadata.push(details, commentButton(game));
   if (game.source) metadata.push(el("span", "", "Curated"));
   metadata.forEach((node, i) => {
     if (i) {

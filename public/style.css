@@ -672,3 +672,136 @@ textarea::placeholder {
     }
   }
 }
+
+.comment-count {
+  border: 0;
+  background: transparent;
+  padding: 4px 0;
+  font-size: inherit;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  min-height: 28px;
+}
+#comments-dialog {
+  width: min(680px, calc(100% - 32px));
+  padding: 24px;
+}
+#comments-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: min(780px, calc(100dvh - 48px));
+}
+#comments-dialog .dialog-heading {
+  flex-shrink: 0;
+}
+#comments-title {
+  font-size: 20px;
+  overflow-wrap: anywhere;
+}
+#comments-scroll {
+  flex: 1;
+  min-height: 100px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 4px;
+}
+#comments-status {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 12px 0;
+}
+#comments-older {
+  margin-bottom: 12px;
+}
+.comment {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin: 12px;
+}
+.comment-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+.comment-meta strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.comment-body {
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 8px 0;
+}
+.comment-actions {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.comment-actions > * {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+}
+.comment-actions a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.quote-ref {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.quoted-line {
+  color: #42702a;
+}
+.comment.referenced {
+  background: var(--tint);
+}
+#comment-form {
+  flex-shrink: 0;
+  gap: 10px;
+}
+#comment-form .form-actions {
+  padding-top: 0;
+  border-top: 0;
+}
+#comment-form textarea {
+  max-height: 140px;
+  min-height: 72px;
+}
+@media (max-width: 700px) {
+  #comments-dialog {
+    width: calc(100% - 16px);
+    padding: 16px;
+  }
+  #comments-dialog[open] {
+    height: calc(100dvh - 16px);
+    max-height: calc(100dvh - 16px);
+    gap: 10px;
+  }
+  #comments-title {
+    font-size: 18px;
+  }
+  .comment-count {
+    min-height: 36px;
+  }
+  .comment-number,
+  .comment-actions > * {
+    min-height: 44px;
+  }
+  #comment-form .form-actions > span {
+    max-width: 150px;
+  }
+}

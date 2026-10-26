@@ -10,8 +10,8 @@
     <meta name="theme-color" content="#f5f5f3" />
     <title>Claudeslop — little games, made with AI</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/style.css" />
-    <script src="/app.js?v=2" defer></script>
+    <link rel="stylesheet" href="/style.css?v=3" />
+    <script type="module" src="/app.js?v=3"></script>
   </head>
   <body>
     <a class="skip" href="#feed">Skip to games</a>
@@ -206,6 +206,49 @@
         </div>
       </form>
     </dialog>
+    <dialog id="comments-dialog" aria-labelledby="comments-title">
+      <div class="dialog-heading">
+        <h2 id="comments-title" tabindex="-1">Comments</h2>
+        <button class="close" data-close aria-label="Close comments">×</button>
+      </div>
+      <div
+        id="comments-scroll"
+        tabindex="0"
+        role="region"
+        aria-label="Comment thread"
+      >
+        <p id="comments-status" role="status">Loading comments…</p>
+        <button id="comments-older" class="secondary" hidden>
+          Older comments
+        </button>
+        <div id="comments-list" aria-busy="false"></div>
+        <button id="comments-retry" class="secondary" hidden>Try again</button>
+      </div>
+      <form id="comment-form">
+        <label
+          >Your comment<textarea
+            name="body"
+            required
+            maxlength="2000"
+            rows="3"
+            placeholder="What did you think of the game?"
+          ></textarea>
+        </label>
+        <div class="honeypot" aria-hidden="true">
+          <label
+            >Leave this empty<input
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+          /></label>
+        </div>
+        <p id="comment-error" class="error" role="alert" hidden></p>
+        <div class="form-actions">
+          <span>Posted anonymously. Be decent.</span
+          ><button type="submit" class="submit-button">Post comment</button>
+        </div>
+      </form>
+    </dialog>
     <dialog id="about-dialog" aria-labelledby="about-title">
       <div class="dialog-heading">
         <h2 id="about-title">Good games. Questionable origins.</h2>
@@ -241,20 +284,21 @@
       <h3>A small prototype</h3>
       <p>
         Submissions go live immediately. We store your submission, an anonymous
-        browser cookie for votes, and temporary hashed network identifiers for
-        spam limits. We don't host submitted games. Play opens the creator's
-        site in a new tab; its own policies apply. External preview images may
-        contact their host.
+        browser cookie for votes and comment spam limits, and temporary hashed
+        network identifiers for spam limits. Comments are public and appear as
+        Anonymous. We do not display or store commenter names. We don't host
+        submitted games. Play opens the creator's site in a new tab; its own
+        policies apply. External preview images may contact their host.
       </p>
       <p>
-        To report a game,
+        To report a game or comment,
         <a
           href="https://github.com/ThatXliner/claudeslop/issues/new?template=report.yml"
           target="_blank"
           rel="noopener noreferrer"
           >open a report on GitHub ↗</a
         >
-        with its title and link.
+        with its title and link, and the comment number if applicable.
       </p>
     </dialog>
   </body>

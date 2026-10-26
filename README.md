@@ -100,3 +100,20 @@ Interface research and creator attribution are recorded in [docs/design.md](docs
 Genre describes the mechanics. Game type describes its relationship to other games: Original, Inspired by, Reimagined, Clone / remake, Port, or Fan game. Uncertain entries can use Not specified, which is omitted from feed metadata. Curated classifications are editorial descriptions, separate from creator AI claims.
 
 Play style describes the usual session: Quick play, Arcade-style, Daily (Wordle-style), Short session (5–15 min), Longer session (15+ min), Endless / sandbox, or Campaign / progression. Choose the closest fit. Existing time labels migrate automatically when the database opens; votes and submissions are preserved.
+
+## Anonymous comments
+
+Every game has a flat comment thread. Posts show Anonymous, a server-issued comment number, and a timestamp. Reply inserts `>>123`; references to loaded comments in the same thread scroll to that post. Single-`>` quoted lines display in green. Text is rendered literally, with no HTML or image uploads. Threads load the latest 50 comments in chronological order; Older comments fetches earlier pages.
+
+Comments are public. No commenter names or accounts are stored. The existing anonymous browser cookie and temporary hashed network identifiers enforce posting limits: ten comments per ten minutes per browser, thirty per ten minutes per network identifier. Comments are limited to 2,000 characters. Retrying the same post does not duplicate it. Drafts stay in memory while switching or closing threads, and disappear on a page reload.
+
+Review or remove comments with:
+
+```sh
+docker compose exec web npm run moderate-comments -- list
+docker compose exec web npm run moderate-comments -- list 15
+docker compose exec web npm run moderate-comments -- hide 123
+docker compose exec web npm run moderate-comments -- restore 123
+```
+
+Hiding a comment removes it from threads and counts. Hiding its game disables access to the whole thread. Reports link to the repository issue form with the game and comment number filled in.
