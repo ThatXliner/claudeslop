@@ -5,6 +5,7 @@ export const genres = [
   "Simulation",
   "Strategy",
   "Action",
+  "Foddian",
   "Other",
 ];
 export const gameTypes = [
