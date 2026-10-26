@@ -3,21 +3,12 @@ import { readFile } from "node:fs/promises";
 import { resolve, extname } from "node:path";
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 import { openStore } from "./store.mjs";
+import { genres, gameTypes, playStyles } from "./taxonomy.mjs";
 
 const { db, secret } = openStore(process.env.DATA_DIR || "./data");
 const appOrigin = process.env.APP_URL
   ? new URL(process.env.APP_URL).origin
   : null;
-const genres = [
-  "Arcade",
-  "Puzzle",
-  "Adventure",
-  "Simulation",
-  "Strategy",
-  "Action",
-  "Other",
-];
-const durations = ["Quick play", "5–15 min", "15+ min"];
 const sign = (value) =>
   createHmac("sha256", secret).update(value).digest("hex");
 const equal = (a, b) =>
@@ -140,7 +131,7 @@ const server = createServer(async (req, res) => {
       const voter = session(req, res);
       const csrf = sign(`csrf:${voter}`);
       if (req.method === "GET" && url.pathname === "/api/session")
-        return json(res, 200, { csrf, genres, durations });
+        return json(res, 200, { csrf, genres, gameTypes, playStyles });
       if (req.method !== "GET") {
         if (!equal(req.headers["x-csrf-token"], csrf))
           fail(403, "Please refresh the page and try again.");
@@ -189,18 +180,23 @@ const server = createServer(async (req, res) => {
           author: text(data.author || "anonymous", "Name", 2, 40),
           image: webUrl(data.image, "Preview image", true),
           genre: data.genre,
-          duration: data.duration,
+          play_style: data.play_style,
+          game_type: data.game_type,
           ai_note: text(data.ai_note, "AI details", 5, 280),
         };
-        if (!genres.includes(game.genre) || !durations.includes(game.duration))
-          fail(400, "Choose a genre and play time.");
+        if (
+          !genres.includes(game.genre) ||
+          !playStyles.includes(game.play_style) ||
+          !gameTypes.includes(game.game_type)
+        )
+          fail(400, "Choose a genre, game type, and play style.");
         if (db.prepare("SELECT id FROM games WHERE url=?").get(game.url))
           fail(409, "This game is already in the directory.");
         limit(`submit:${ip}`, 3, 3600000);
         limit(`submit:${voter}`, 3, 3600000);
         const result = db
           .prepare(
-            "INSERT INTO games (title,url,description,author,image,genre,duration,ai_note,created_at) VALUES (?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO games (title,url,description,author,image,genre,play_style,game_type,ai_note,created_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
           )
           .run(
             game.title,
@@ -209,7 +205,8 @@ const server = createServer(async (req, res) => {
             game.author,
             game.image,
             game.genre,
-            game.duration,
+            game.play_style,
+            game.game_type,
             game.ai_note,
             Date.now(),
           );
@@ -255,7 +252,7 @@ const server = createServer(async (req, res) => {
     }
     res.writeHead(200, {
       "Content-Type": types[extname(asset)],
-      "Cache-Control": asset.endsWith(".html")
+      "Cache-Control": [".html", ".js", ".css"].includes(extname(asset))
         ? "no-cache"
         : "public, max-age=3600",
     });

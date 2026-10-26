@@ -11,7 +11,7 @@
     <title>Claudeslop — little games, made with AI</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/style.css" />
-    <script src="/app.js" defer></script>
+    <script src="/app.js?v=2" defer></script>
   </head>
   <body>
     <a class="skip" href="#feed">Skip to games</a>
@@ -144,12 +144,26 @@
             </select></label
           >
         </div>
+        <label
+          >Game type
+          <select name="game_type" required>
+            <option value="">Choose the closest fit</option>
+          </select>
+          <span class="hint"
+            >Original: its own game and identity. Inspired by: a new game with
+            clear influences. Reimagined: a fresh take on an existing game.
+            Clone / remake: a close recreation. Port: moved to a new platform.
+            Fan game: based in someone else's world.</span
+          >
+        </label>
         <div class="form-pair">
           <label
-            >Play time
-            <select name="duration" required>
-              <option value="">Choose a play time</option>
-            </select></label
+            >Play style
+            <select name="play_style" required>
+              <option value="">Choose a play style</option></select
+            ><span class="hint"
+              >How do people usually play? Pick the closest fit.</span
+            ></label
           ><label
             >Preview image <span class="optional">optional</span
             ><input

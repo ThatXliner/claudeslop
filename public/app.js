@@ -111,12 +111,14 @@ function renderGame(game) {
   const meta = el("div", "meta");
   const metadata = [
     el("span", "genre", game.genre),
-    el("span", "", game.duration),
+    el("span", "", game.play_style),
     el("span", "", `by ${game.author}`),
     el("time", "", age(game.created_at)),
   ];
   metadata[3].dateTime = new Date(game.created_at).toISOString();
   metadata[3].title = new Date(game.created_at).toLocaleString();
+  if (game.game_type && game.game_type !== "Not specified")
+    metadata.splice(1, 0, el("span", "", game.game_type));
   const details = el("details", "ai-details");
   details.append(el("summary", "", "AI details"));
   const note = el("p", "", game.ai_note);
@@ -261,7 +263,8 @@ async function start() {
     session = await api("/api/session");
     for (const [name, choices] of [
       ["genre", session.genres],
-      ["duration", session.durations],
+      ["game_type", session.gameTypes],
+      ["play_style", session.playStyles],
     ]) {
       for (const choice of choices) {
         const option = el("option", "", choice);

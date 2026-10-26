@@ -6,9 +6,10 @@
     "author": "mrdoob",
     "image": "https://mrdoob.github.io/Starter-Kit-Racing/screenshot.png",
     "genre": "Arcade",
-    "duration": "Quick play",
     "ai_note": "Ported to JavaScript with Claude by mrdoob. Original starter kit and CC0 assets by Kenney.",
-    "source": "https://github.com/mrdoob/Starter-Kit-Racing"
+    "source": "https://github.com/mrdoob/Starter-Kit-Racing",
+    "game_type": "Port",
+    "play_style": "Arcade-style"
   },
   {
     "title": "Fly Pieter",
@@ -17,9 +18,10 @@
     "author": "Pieter Levels",
     "image": "https://fly.pieter.com/assets/fly_social_image.png?1234",
     "genre": "Simulation",
-    "duration": "Quick play",
     "ai_note": "The creator describes this as made with AI using Cursor and Three.js. Optional paid extras are offered on the game site.",
-    "source": "https://fly.pieter.com/"
+    "source": "https://fly.pieter.com/",
+    "game_type": "Original",
+    "play_style": "Endless / sandbox"
   },
   {
     "title": "Riposte: Frontline",
@@ -28,9 +30,10 @@
     "author": "BenDBS",
     "image": "https://www.playriposte.com/icons/apercu.88ec48ac.jpg",
     "genre": "Action",
-    "duration": "5–15 min",
     "ai_note": "The creator credits Claude Code in the game's footer. Source is published by BenDBSS.",
-    "source": "https://github.com/BenDBSS/Riposte-Frontline-Source"
+    "source": "https://github.com/BenDBSS/Riposte-Frontline-Source",
+    "game_type": "Original",
+    "play_style": "Arcade-style"
   },
   {
     "title": "Three.js Quake",
@@ -39,9 +42,10 @@
     "author": "mrdoob · original by id Software",
     "image": "/previews/quake.png",
     "genre": "Action",
-    "duration": "15+ min",
     "ai_note": "Browser port by mrdoob with Claude. Original game by id Software; this is a port, not an AI-created original game.",
-    "source": "https://github.com/mrdoob/three-quake"
+    "source": "https://github.com/mrdoob/three-quake",
+    "game_type": "Port",
+    "play_style": "Campaign / progression"
   },
   {
     "title": "Sillage",
@@ -50,9 +54,10 @@
     "author": "Denis Hovart",
     "image": "https://sillage.denzen.online/card.jpg",
     "genre": "Adventure",
-    "duration": "Quick play",
     "ai_note": "The creator describes using LLMs to implement the game and shaders in their October 23 Show HN post. They did not name a model.",
-    "source": "https://news.ycombinator.com/item?id=50214466"
+    "source": "https://news.ycombinator.com/item?id=50214466",
+    "game_type": "Inspired by",
+    "play_style": "Endless / sandbox"
   },
   {
     "title": "Tiberava",
@@ -61,9 +66,10 @@
     "author": "cayodister",
     "image": "/previews/tiberava.png",
     "genre": "Strategy",
-    "duration": "15+ min",
     "ai_note": "The creator calls this their vibe-coded game in an October 22 Show HN update. The post does not specify an AI tool.",
-    "source": "https://news.ycombinator.com/item?id=50200570"
+    "source": "https://news.ycombinator.com/item?id=50200570",
+    "game_type": "Original",
+    "play_style": "Endless / sandbox"
   },
   {
     "title": "Mine Rogue",
@@ -72,9 +78,10 @@
     "author": "aeonfr",
     "image": "/previews/mine-rogue.png",
     "genre": "Puzzle",
-    "duration": "5–15 min",
     "ai_note": "The creator says they used Claude Opus 5.5, React, and 98.css in their October 21 HN launch comment.",
-    "source": "https://news.ycombinator.com/item?id=50183694"
+    "source": "https://news.ycombinator.com/item?id=50183694",
+    "game_type": "Reimagined",
+    "play_style": "Arcade-style"
   },
   {
     "title": "Daily Pipes",
@@ -83,9 +90,10 @@
     "author": "jkelle",
     "image": "https://daily-pipes.com/og-image-v2.png",
     "genre": "Puzzle",
-    "duration": "Quick play",
     "ai_note": "The creator says Claude implemented almost all the code in their October 21 Show HN post. The daily puzzle is free; an archive is advertised separately.",
-    "source": "https://news.ycombinator.com/item?id=50180014"
+    "source": "https://news.ycombinator.com/item?id=50180014",
+    "game_type": "Inspired by",
+    "play_style": "Daily (Wordle-style)"
   },
   {
     "title": "Haiku Harbour",
@@ -94,9 +102,10 @@
     "author": "Chong-U (@chongdashu)",
     "image": "https://haiku-harbour.vercel.app/assets/harbour.jpg?v=d84f6f5481b0",
     "genre": "Adventure",
-    "duration": "Quick play",
     "ai_note": "The creator credits Claude Haiku 5.5 in their October 8 X post. The linked game page also names the creator and model.",
-    "source": "https://x.com/chongdashu/status/2108195439606681975"
+    "source": "https://x.com/chongdashu/status/2108195439606681975",
+    "game_type": "Original",
+    "play_style": "Endless / sandbox"
   },
   {
     "title": "Netherspace",
@@ -105,9 +114,10 @@
     "author": "esha (@eshpvt)",
     "image": "https://netherspace.vercel.app/og.jpg",
     "genre": "Arcade",
-    "duration": "Quick play",
     "ai_note": "The creator says they made this platformer with Claude Opus 5.5 in their September 23 X post.",
-    "source": "https://x.com/eshpvt/status/2102727230510289034"
+    "source": "https://x.com/eshpvt/status/2102727230510289034",
+    "game_type": "Original",
+    "play_style": "Campaign / progression"
   },
   {
     "title": "Arkenfall",
@@ -116,8 +126,9 @@
     "author": "Leon Lin (@LexnLin)",
     "image": "https://www.arkenfall.site/og.png",
     "genre": "Action",
-    "duration": "15+ min",
     "ai_note": "The creator credits Claude Opus 5.5 for the code, procedural world, sound, and music in their September 23 X post.",
-    "source": "https://x.com/LexnLin/status/2102834362530079093"
+    "source": "https://x.com/LexnLin/status/2102834362530079093",
+    "game_type": "Original",
+    "play_style": "Campaign / progression"
   }
 ]

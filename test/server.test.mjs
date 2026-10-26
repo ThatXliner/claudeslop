@@ -59,7 +59,8 @@ test("submission, voting, persistence, validation and request boundaries", async
       author: "Test creator",
       image: "",
       genre: "Puzzle",
-      duration: "Quick play",
+      play_style: "Daily (Wordle-style)",
+      game_type: "Reimagined",
       ai_note: "Made with Codex.",
     };
     assert.equal((await request("/api/games")).status, 200);
@@ -86,6 +87,16 @@ test("submission, voting, persistence, validation and request boundaries", async
       url: "http://127.0.0.1:3000/game",
     });
     assert.equal(result.status, 400);
+    result = await request("/api/games", "POST", {
+      ...input,
+      game_type: "Unrecognized",
+    });
+    assert.equal(result.status, 400);
+    result = await request("/api/games", "POST", {
+      ...input,
+      play_style: "Unrecognized",
+    });
+    assert.equal(result.status, 400);
     result = await request("/api/games", "POST", input);
     assert.equal(result.status, 201);
     const { id } = await result.json();
@@ -97,6 +108,8 @@ test("submission, voting, persistence, validation and request boundaries", async
     result = await request("/api/games?sort=new");
     const data = await result.json();
     assert.equal(data.games[0].title, input.title);
+    assert.equal(data.games[0].game_type, "Reimagined");
+    assert.equal(data.games[0].play_style, "Daily (Wordle-style)");
     assert.equal(data.games[0].voted, 1);
     await app.stop();
     app = await launch(directory);

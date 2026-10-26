@@ -15,14 +15,14 @@ test("curated import adds new games once and preserves existing submissions, vot
     );
     const first = seeds[0];
     db.prepare(
-      "INSERT INTO games (title,url,description,author,genre,duration,ai_note,created_at,hidden) VALUES (?,?,?,?,?,?,?,?,1)",
+      "INSERT INTO games (title,url,description,author,genre,play_style,ai_note,created_at,hidden) VALUES (?,?,?,?,?,?,?,?,1)",
     ).run(
       "Existing community submission",
       first.url,
       "Community description",
       "Original submitter",
       first.genre,
-      first.duration,
+      first.play_style,
       "Original AI note",
       12345,
     );

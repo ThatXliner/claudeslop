@@ -53,7 +53,7 @@ After deploying the updated repository, import them into the existing production
 docker compose exec web npm run import-seeds
 ```
 
-The command inserts missing URLs in one transaction. It is safe to rerun and preserves existing submissions, votes, timestamps, and moderation state. It does not update existing listings. New curated entries start with zero votes. Their feed timestamp records when they were added here, not when the creator posted them.
+The command inserts missing URLs in one transaction. It is safe to rerun and preserves existing submissions, votes, timestamps, and moderation state. To update only the game-type and play-style tags of existing curated entries, use `npm run import-seeds -- --update-tags` (or `docker compose exec web npm run import-seeds -- --update-tags`). Matching requires the same URL and nonempty creator source; community submissions are preserved. New curated entries start with zero votes. Their feed timestamp records when they were added here, not when the creator posted them.
 
 ## Moderate submissions
 
@@ -94,3 +94,9 @@ Votes use a signed, HttpOnly browser cookie. Clearing cookies creates a new voti
 Submissions are plain text; the browser renders them with `textContent`. The server validates links, never fetches submitted URLs, and uses parameterized SQL. Preview images load directly from their hosts. Submitted games open externally. There are no analytics or third-party script dependencies.
 
 Interface research and creator attribution are recorded in [docs/design.md](docs/design.md).
+
+## Game tags
+
+Genre describes the mechanics. Game type describes its relationship to other games: Original, Inspired by, Reimagined, Clone / remake, Port, or Fan game. Uncertain entries can use Not specified, which is omitted from feed metadata. Curated classifications are editorial descriptions, separate from creator AI claims.
+
+Play style describes the usual session: Quick play, Arcade-style, Daily (Wordle-style), Short session (5–15 min), Longer session (15+ min), Endless / sandbox, or Campaign / progression. Choose the closest fit. Existing time labels migrate automatically when the database opens; votes and submissions are preserved.

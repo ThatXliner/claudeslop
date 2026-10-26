@@ -1,6 +1,6 @@
 FROM node:24-alpine
 WORKDIR /app
-COPY package.json server.mjs store.mjs ./
+COPY package.json server.mjs store.mjs taxonomy.mjs ./
 COPY public ./public
 COPY seeds.json ./
 COPY scripts ./scripts
