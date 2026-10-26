@@ -37,10 +37,10 @@
     "url": "https://mrdoob.github.io/three-quake/",
     "description": "Quake's shareware first episode, ported to the browser with Three.js.",
     "author": "mrdoob · original by id Software",
-    "image": "https://mrdoob.github.io/three-quake/mainmenu.png",
+    "image": "/previews/quake.png",
     "genre": "Action",
     "duration": "15+ min",
-    "ai_note": "Browser port by mrdoob with Claude. Original game by id Software; this is a port, not an AI-created original game. Preview shows menu art.",
+    "ai_note": "Browser port by mrdoob with Claude. Original game by id Software; this is a port, not an AI-created original game.",
     "source": "https://github.com/mrdoob/three-quake"
   }
 ]

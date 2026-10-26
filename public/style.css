@@ -516,6 +516,11 @@ textarea::placeholder {
   }
 }
 @media (max-width: 700px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
   .shell {
     padding: 0 16px;
   }

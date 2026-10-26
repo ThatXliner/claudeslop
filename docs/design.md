@@ -20,4 +20,4 @@ The design-taste-frontend app-screen guidance informed the flat surfaces, restra
 
 ## Curated games
 
-See `seeds.json` for live game and preview URLs. Each entry has a source link explaining the creator's AI use. Ports are described as ports, with credit to the original game creators. Preview artwork belongs to its respective creator. We link to it rather than claim ownership.
+See `seeds.json` for live game and preview URLs. Each entry has a source link explaining the creator's AI use. Ports are described as ports, with credit to the original game creators. Preview artwork belongs to its respective creator. Most previews link to their creator’s own images. The Quake preview is a gameplay capture from the linked browser port; original game art belongs to id Software.
