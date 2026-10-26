@@ -12,7 +12,7 @@ Use Node 22.13 or later. Production uses Node 24 in Docker. There are no runtime
 npm start
 ```
 
-Open http://127.0.0.1:4317. SQLite data and a session-signing secret are created in `data/`. The four curated games in `seeds.json` load only when the database has no games. Set `SEED=false` to start empty.
+Open http://127.0.0.1:4317. SQLite data and a session-signing secret are created in `data/`. The curated games in `seeds.json` load automatically only when the database has no games. Set `SEED=false` to start empty.
 
 ```sh
 npm test
@@ -36,6 +36,24 @@ curl -fsS http://127.0.0.1:4317/health
 The named Docker volume `claudeslop_claudeslop-data` holds the SQLite database and cookie secret. Container rebuilds preserve it. `docker compose down -v` deletes it, so do not use that command to update the app.
 
 Cloudflare Tunnel configuration is in `/Users/bhu/.cloudflared/config.yml`. Its launch agent is `com.bryanhu.cloudflared`. The tunnel is shared with other services. Preserve their ingress entries when changing it.
+
+## Add curated games
+
+Add entries to `seeds.json`, with a working browser game link, a preview, creator credit, and a primary source for the creator's AI claim. Check that the game starts; an HTTP 200 alone is not enough. Record the original post date and what you checked in `docs/`.
+
+Import additions locally:
+
+```sh
+npm run import-seeds
+```
+
+After deploying the updated repository, import them into the existing production database:
+
+```sh
+docker compose exec web npm run import-seeds
+```
+
+The command inserts missing URLs in one transaction. It is safe to rerun and preserves existing submissions, votes, timestamps, and moderation state. It does not update existing listings. New curated entries start with zero votes. Their feed timestamp records when they were added here, not when the creator posted them.
 
 ## Moderate submissions
 

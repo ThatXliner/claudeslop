@@ -3,7 +3,10 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { randomBytes } from "node:crypto";
 
-export function openStore(directory) {
+export function openStore(
+  directory,
+  { seed = process.env.SEED !== "false" } = {},
+) {
   mkdirSync(directory, { recursive: true });
   const secretPath = join(directory, "session-secret");
   if (!existsSync(secretPath))
@@ -30,18 +33,22 @@ export function openStore(directory) {
     );
     CREATE INDEX IF NOT EXISTS limits_bucket ON limits(bucket, at);
   `);
-  if (
-    !db.prepare("SELECT 1 FROM games LIMIT 1").get() &&
-    process.env.SEED !== "false"
-  ) {
-    const seeds = JSON.parse(
-      readFileSync(new URL("./seeds.json", import.meta.url), "utf8"),
-    );
-    const insert = db.prepare(
-      "INSERT INTO games (title,url,description,author,image,genre,duration,ai_note,source,created_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
-    );
-    for (const game of seeds)
-      insert.run(
+  if (seed && !db.prepare("SELECT 1 FROM games LIMIT 1").get()) importSeeds(db);
+  return { db, secret };
+}
+
+export function importSeeds(db) {
+  const seeds = JSON.parse(
+    readFileSync(new URL("./seeds.json", import.meta.url), "utf8"),
+  );
+  const insert = db.prepare(
+    "INSERT INTO games (title,url,description,author,image,genre,duration,ai_note,source,created_at) VALUES (?,?,?,?,?,?,?,?,?,?) ON CONFLICT(url) DO NOTHING",
+  );
+  let added = 0;
+  db.exec("BEGIN IMMEDIATE");
+  try {
+    for (const game of seeds) {
+      added += insert.run(
         game.title,
         game.url,
         game.description,
@@ -52,7 +59,12 @@ export function openStore(directory) {
         game.ai_note,
         game.source || "",
         Date.now(),
-      );
+      ).changes;
+    }
+    db.exec("COMMIT");
+    return added;
+  } catch (error) {
+    db.exec("ROLLBACK");
+    throw error;
   }
-  return { db, secret };
 }

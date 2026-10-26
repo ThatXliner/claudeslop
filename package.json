@@ -11,6 +11,7 @@
     "start": "node server.mjs",
     "dev": "node --watch server.mjs",
     "test": "node --test",
-    "moderate": "node scripts/moderate.mjs"
+    "moderate": "node scripts/moderate.mjs",
+    "import-seeds": "node scripts/import-seeds.mjs"
   }
 }

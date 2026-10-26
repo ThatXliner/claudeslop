@@ -42,5 +42,82 @@
     "duration": "15+ min",
     "ai_note": "Browser port by mrdoob with Claude. Original game by id Software; this is a port, not an AI-created original game.",
     "source": "https://github.com/mrdoob/three-quake"
+  },
+  {
+    "title": "Sillage",
+    "url": "https://sillage.denzen.online/",
+    "description": "Swim through an illustrated microscopic world. Follow the currents, meet strange creatures, and take your time.",
+    "author": "Denis Hovart",
+    "image": "https://sillage.denzen.online/card.jpg",
+    "genre": "Adventure",
+    "duration": "Quick play",
+    "ai_note": "The creator describes using LLMs to implement the game and shaders in their October 23 Show HN post. They did not name a model.",
+    "source": "https://news.ycombinator.com/item?id=50214466"
+  },
+  {
+    "title": "Tiberava",
+    "url": "https://tiberava.online/",
+    "description": "Build a Roman city, balance its economy, keep your citizens supplied, and prepare for trouble.",
+    "author": "cayodister",
+    "image": "/previews/tiberava.png",
+    "genre": "Strategy",
+    "duration": "15+ min",
+    "ai_note": "The creator calls this their vibe-coded game in an October 22 Show HN update. The post does not specify an AI tool.",
+    "source": "https://news.ycombinator.com/item?id=50200570"
+  },
+  {
+    "title": "Mine Rogue",
+    "url": "https://minerogue.francanobr.com/",
+    "description": "Minesweeper with a roguelike shop: survive harder boards, buy strange bonuses, and chase bigger scores.",
+    "author": "aeonfr",
+    "image": "/previews/mine-rogue.png",
+    "genre": "Puzzle",
+    "duration": "5–15 min",
+    "ai_note": "The creator says they used Claude Opus 5.5, React, and 98.css in their October 21 HN launch comment.",
+    "source": "https://news.ycombinator.com/item?id=50183694"
+  },
+  {
+    "title": "Daily Pipes",
+    "url": "https://daily-pipes.com/",
+    "description": "Rotate the tiles until every pipe connects. A new daily puzzle, designed to be solved without guessing.",
+    "author": "jkelle",
+    "image": "https://daily-pipes.com/og-image-v2.png",
+    "genre": "Puzzle",
+    "duration": "Quick play",
+    "ai_note": "The creator says Claude implemented almost all the code in their October 21 Show HN post. The daily puzzle is free; an archive is advertised separately.",
+    "source": "https://news.ycombinator.com/item?id=50180014"
+  },
+  {
+    "title": "Haiku Harbour",
+    "url": "https://haiku-harbour.vercel.app/",
+    "description": "Wander through a seaside town filled with NPCs and other players. A little world to get lost in.",
+    "author": "Chong-U (@chongdashu)",
+    "image": "https://haiku-harbour.vercel.app/assets/harbour.jpg?v=d84f6f5481b0",
+    "genre": "Adventure",
+    "duration": "Quick play",
+    "ai_note": "The creator credits Claude Haiku 5.5 in their October 8 X post. The linked game page also names the creator and model.",
+    "source": "https://x.com/chongdashu/status/2108195439606681975"
+  },
+  {
+    "title": "Netherspace",
+    "url": "https://netherspace.vercel.app/",
+    "description": "Neo just woke up. Jump through a platforming world that takes shape as you bump into questions.",
+    "author": "esha (@eshpvt)",
+    "image": "https://netherspace.vercel.app/og.jpg",
+    "genre": "Arcade",
+    "duration": "Quick play",
+    "ai_note": "The creator says they made this platformer with Claude Opus 5.5 in their September 23 X post.",
+    "source": "https://x.com/eshpvt/status/2102727230510289034"
+  },
+  {
+    "title": "Arkenfall",
+    "url": "https://www.arkenfall.site/",
+    "description": "Explore the Frayed Vale, fight the Unravelled, and climb the Loomspire in a browser fantasy adventure.",
+    "author": "Leon Lin (@LexnLin)",
+    "image": "https://www.arkenfall.site/og.png",
+    "genre": "Action",
+    "duration": "15+ min",
+    "ai_note": "The creator credits Claude Opus 5.5 for the code, procedural world, sound, and music in their September 23 X post.",
+    "source": "https://x.com/LexnLin/status/2102834362530079093"
   }
 ]
