@@ -130,5 +130,53 @@
     "source": "https://x.com/LexnLin/status/2102834362530079093",
     "game_type": "Original",
     "play_style": "Campaign / progression"
+  },
+  {
+    "title": "Grindion",
+    "url": "https://grindion.bryanhu.com/",
+    "description": "Chain matching monsters, bank score or forge power, then spend it all on a shot your rivals can parry.",
+    "author": "Bryan Hu",
+    "image": "/previews/grindion.png",
+    "genre": "Puzzle",
+    "game_type": "Original",
+    "play_style": "Arcade-style",
+    "ai_note": "Added at the creator’s request. AI development tools and workflow were not specified.",
+    "source": "https://grindion.bryanhu.com/"
+  },
+  {
+    "title": "yourEmagic",
+    "url": "https://youremagic.bryanhu.com/",
+    "description": "Invent creatures and spells, then bring them to a poker table where your chips are your life.",
+    "author": "Bryan Hu",
+    "image": "/previews/youremagic.png",
+    "genre": "Strategy",
+    "game_type": "Reimagined",
+    "play_style": "Short session (5–15 min)",
+    "ai_note": "The Forge uses AI to turn descriptions into playable card rules. Starter cards are available without configuring a model. Added at the creator’s request.",
+    "source": "https://youremagic.bryanhu.com/"
+  },
+  {
+    "title": "sweepr",
+    "url": "https://sweepr.bryanhu.com/",
+    "description": "Minesweeper reimagined with classic and infinite boards, tactical battle royale, and head-to-head blitz.",
+    "author": "Bryan Hu",
+    "image": "/previews/sweepr.png",
+    "genre": "Puzzle",
+    "game_type": "Reimagined",
+    "play_style": "Arcade-style",
+    "ai_note": "Added at the creator’s request. AI development tools and workflow were not specified.",
+    "source": "https://sweepr.bryanhu.com/"
+  },
+  {
+    "title": "CoreDumped",
+    "url": "https://bryanhu.com/coredumped/",
+    "description": "Explore a roguelike dungeon where enemy behavior runs on Lisp you can inspect, edit, and break.",
+    "author": "Bryan Hu",
+    "image": "/previews/coredumped.png",
+    "genre": "Adventure",
+    "game_type": "Original",
+    "play_style": "Campaign / progression",
+    "ai_note": "Added at the creator’s request. AI development tools and workflow were not specified.",
+    "source": "https://bryanhu.com/coredumped/"
   }
 ]
