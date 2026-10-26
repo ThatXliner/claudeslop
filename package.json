@@ -1,0 +1,14 @@
+{
+  "name": "claudeslop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A small directory of games made with AI.",
+  "engines": { "node": ">=22.13.0" },
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs",
+    "test": "node --test",
+    "moderate": "node scripts/moderate.mjs"
+  }
+}

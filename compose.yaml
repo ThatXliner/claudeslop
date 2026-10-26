@@ -1,0 +1,25 @@
+services:
+  web:
+    build: .
+    container_name: claudeslop
+    restart: unless-stopped
+    init: true
+    ports:
+      - "127.0.0.1:4317:4317"
+    environment:
+      APP_URL: https://claudeslop.bryanhu.com
+      TRUST_PROXY: "true"
+    volumes:
+      - claudeslop-data:/data
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  claudeslop-data:

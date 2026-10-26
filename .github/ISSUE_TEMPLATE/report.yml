@@ -1,0 +1,17 @@
+name: Report a game
+description: Report spam, a broken link, or a game that breaks the guidelines.
+title: "Game report: "
+body:
+  - type: input
+    id: game
+    attributes:
+      label: Game title and link
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: What is wrong?
+      description: Please include enough detail for us to review it. Do not include private information.
+    validations:
+      required: true

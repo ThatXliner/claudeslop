@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Starter Kit Racing",
+    "url": "https://mrdoob.github.io/Starter-Kit-Racing/",
+    "description": "Chase lap times around a toy-box circuit, then build a track of your own.",
+    "author": "mrdoob",
+    "image": "https://mrdoob.github.io/Starter-Kit-Racing/screenshot.png",
+    "genre": "Arcade",
+    "duration": "Quick play",
+    "ai_note": "Ported to JavaScript with Claude by mrdoob. Original starter kit and CC0 assets by Kenney.",
+    "source": "https://github.com/mrdoob/Starter-Kit-Racing"
+  },
+  {
+    "title": "Fly Pieter",
+    "url": "https://fly.pieter.com/",
+    "description": "Take off into a shared low-poly world. Try landing in one piece.",
+    "author": "Pieter Levels",
+    "image": "https://fly.pieter.com/assets/fly_social_image.png?1234",
+    "genre": "Simulation",
+    "duration": "Quick play",
+    "ai_note": "The creator describes this as made with AI using Cursor and Three.js. Optional paid extras are offered on the game site.",
+    "source": "https://fly.pieter.com/"
+  },
+  {
+    "title": "Riposte: Frontline",
+    "url": "https://www.playriposte.com/",
+    "description": "A browser FPS with classes, bot matches, and online lobbies.",
+    "author": "BenDBS",
+    "image": "https://www.playriposte.com/icons/apercu.88ec48ac.jpg",
+    "genre": "Action",
+    "duration": "5–15 min",
+    "ai_note": "The creator credits Claude Code in the game's footer. Source is published by BenDBSS.",
+    "source": "https://github.com/BenDBSS/Riposte-Frontline-Source"
+  },
+  {
+    "title": "Three.js Quake",
+    "url": "https://mrdoob.github.io/three-quake/",
+    "description": "Quake's shareware first episode, ported to the browser with Three.js.",
+    "author": "mrdoob · original by id Software",
+    "image": "https://mrdoob.github.io/three-quake/mainmenu.png",
+    "genre": "Action",
+    "duration": "15+ min",
+    "ai_note": "Browser port by mrdoob with Claude. Original game by id Software; this is a port, not an AI-created original game. Preview shows menu art.",
+    "source": "https://github.com/mrdoob/three-quake"
+  }
+]

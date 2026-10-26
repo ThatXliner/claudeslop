@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Weird little games made with AI. Find something worth playing, vote for your favorites, and share what you made.">
+  <meta name="theme-color" content="#f5f5f3">
+  <title>Claudeslop — little games, made with AI</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#feed">Skip to games</a>
+  <div class="shell">
+    <header>
+      <a href="/" class="brand" aria-label="Claudeslop home"><svg viewBox="0 0 28 28" width="28" height="28" aria-hidden="true"><path d="M5 8h18v12H5zM9 5h10M9 23h10M2 11v6M26 11v6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M9 14h6m-3-3v6" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="13" r="1.5" fill="currentColor"/><circle cx="18" cy="17" r="1.5" fill="currentColor"/></svg><span>claudeslop<span class="brand-dot">.</span></span></a>
+      <nav aria-label="Feed"><a href="/#hot" data-sort="hot" aria-current="page">Hot</a><a href="/#new" data-sort="new">New</a></nav>
+      <button class="submit-button" id="open-submit">Submit a game <span aria-hidden="true">↗</span></button>
+    </header>
+    <main>
+      <div class="intro"><div><h1>Little games, made with AI.</h1><p>Weird ideas. Weekend projects. A few surprisingly good games.</p></div><span class="intro-note">Less scrolling, more playing.</span></div>
+      <div class="feed-heading"><h2 id="feed-title">Hot games</h2><span id="sort-explanation">A mix of fresh games and community favorites.</span></div>
+      <div id="feed" tabindex="-1" aria-busy="true"><p class="empty">Loading the good slop…</p></div>
+      <button id="load-more" class="secondary" hidden>More games</button>
+      <noscript><p>This prototype needs JavaScript to load games and save votes.</p></noscript>
+      <div id="feed-error" class="feed-error" hidden><p role="alert" id="feed-error-text"></p><button id="retry" class="secondary">Try again</button></div>
+    </main>
+    <footer><span>A home for the games you almost didn't ship.</span><div><button id="open-about" class="text-button">About & guidelines</button><a href="https://github.com/ThatXliner/claudeslop" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></footer>
+  </div>
+  <div id="toast" role="status" class="toast" hidden></div>
+  <dialog id="submit-dialog" aria-labelledby="submit-title">
+    <div class="dialog-heading"><h2 id="submit-title">Put your game out there.</h2><button type="button" class="close" data-close aria-label="Close submission form">×</button></div>
+    <p class="dialog-intro">A playable link, a little context, and you're in. All AI tools welcome.</p>
+    <form id="submit-form">
+      <label>Game title <input name="title" required minlength="2" maxlength="80" placeholder="What’s it called?"></label>
+      <label>Playable link <input name="url" type="url" required maxlength="1500" placeholder="https://your-game.itch.io/…"><span class="hint">Link directly to a game people can play in their browser.</span></label>
+      <label>The hook <textarea name="description" required minlength="10" maxlength="240" rows="2" placeholder="What makes it worth a play?"></textarea></label>
+      <div class="form-pair"><label>Your name <input name="author" maxlength="40" minlength="2" placeholder="anonymous" autocomplete="nickname"></label><label>Genre <select name="genre" required><option value="">Choose a genre</option></select></label></div>
+      <div class="form-pair"><label>Play time <select name="duration" required><option value="">Choose a play time</option></select></label><label>Preview image <span class="optional">optional</span><input name="image" type="url" maxlength="1500" placeholder="https://…/screenshot.png"></label></div>
+      <label>How did you use AI? <textarea name="ai_note" required minlength="5" maxlength="280" rows="2" placeholder="e.g. Built with Claude; drew the sprites myself."></textarea></label>
+      <div class="honeypot" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="hint">Submit your own work, or credit the creator. No downloads, paywalls, or misleading previews. Please check the <button type="button" class="inline-button" id="form-guidelines">guidelines</button>.</p>
+      <p id="form-error" class="error" role="alert" hidden></p>
+      <div class="form-actions"><span>No account needed.</span><button type="submit" class="submit-button">Submit game ↗</button></div>
+    </form>
+  </dialog>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <div class="dialog-heading"><h2 id="about-title">Good games. Questionable origins.</h2><button class="close" data-close aria-label="Close about">×</button></div>
+    <p>Claudeslop is a place to discover and share little games made with AI. Strange experiments and rough edges are welcome. Give people something fun to play.</p>
+    <h3>The house rules</h3>
+    <ul class="guidelines"><li>Share a playable browser game. No installers, malware, gambling, or payment required to try it.</li><li>Give credit. Tell us who made it and how AI was involved. Don't repost other people's work as your own.</li><li>Use a real gameplay screenshot. Keep titles and descriptions accurate.</li><li>No hate, harassment, explicit sexual content, or spam. We can remove submissions that don't belong.</li><li>Vote for games you enjoyed. Votes are saved in this browser; clearing cookies resets your voting identity.</li></ul>
+    <h3>A small prototype</h3><p>Submissions go live immediately. We store your submission, an anonymous browser cookie for votes, and temporary hashed network identifiers for spam limits. We don't host submitted games. Play opens the creator's site in a new tab; its own policies apply. External preview images may contact their host.</p>
+    <p>To report a game, <a href="https://github.com/ThatXliner/claudeslop/issues/new?template=report.yml" target="_blank" rel="noopener noreferrer">open a report on GitHub ↗</a> with its title and link.</p>
+  </dialog>
+</body>
+</html>
