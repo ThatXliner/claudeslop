@@ -85,3 +85,13 @@ Comments display Anonymous, a timestamp, and plain text. Threads load the latest
 Comments are limited to 2,000 characters. A signed, HttpOnly browser cookie and temporary hashed network identifiers support these limits. No commenter-name fields or accounts are stored.
 
 Submitted text is rendered literally. The server validates links, never fetches submitted URLs, and uses parameterized SQL. Preview images load from their hosts; games open on the creator's site. The app has no analytics or third-party script dependencies.
+
+## Check the desktop layout
+
+With an instance running, use the optional browser check to verify that the cabinet fits the viewport and the game list scrolls independently:
+
+```sh
+node scripts/check-layout.mjs http://127.0.0.1:4317
+```
+
+This check requires Playwright and its browser. Set `PLAYWRIGHT_MODULE` to reuse an installation outside the repository, or `BROWSER_CHANNEL=chrome` to use an installed Chrome. It checks every loaded game's details at common desktop sizes, including 1280 × 720.

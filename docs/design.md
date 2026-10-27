@@ -8,14 +8,16 @@ Votes stay in place until the feed reloads.
 
 ## Arcade cabinet (October 27, 2026)
 
-Claude designed and implemented the arcade treatment, followed by local browser checks and responsive fixes. The site is drawn as an upright cabinet in the style of a Pandora's Box multi-game machine: a backlit marquee, a CRT inside a black bezel, a control deck, and a coin door. The art is 2.5D pixel art: hard colour stops, unblurred shadows in 2px and 4px steps, stepped corners, and chrome made from banded gradients. The CSP allows no `data:` URIs and the server serves a fixed list of files, so every shape is CSS or inline SVG. The pixel logo in `index.html` is a 5 × 7 bitmap font with layered offsets for depth.
+Claude designed and implemented the arcade treatment, followed by local browser checks and responsive fixes. The site is drawn as an upright cabinet in the style of a Pandora's Box multi-game machine: a backlit marquee, a CRT inside a black bezel, a control deck, and a coin door. The art is 2.5D pixel art on a 4px grid. Every outline, bevel, stair step, rivet, and button is a whole number of 4px pixels, filled from short ramps (lacquer, metal, sunset, CRT) with hard stops. There are no blurred glows or scanlines. A chained `drop-shadow` filter draws a 4px sprite outline around stepped shapes. UI on the CRT uses a finer 2px pixel. The CSP allows no `data:` URIs and the server serves a fixed list of files, so every shape is CSS or inline SVG. The pixel logo in `index.html` is a 5 × 7 bitmap font with layered offsets for depth.
 
+- Above 760px the whole cabinet fits in the viewport and the page doesn't scroll. Marquee, deck, and base have clamped heights; the screen gets the remaining `minmax(0, 1fr)` row, and only the game list scrolls. Windows shorter than 600px fall back to page scrolling.
+- The selected-game panel is a size container. When it's short, the preview sits beside the text; at 540px or taller, it sits above. The preview is sized from the leftover height, so the description, tags, vote, comments, and Play stay visible. AI details open as a small panel instead of pushing the layout.
 - Wide screens show a game-select menu. The list on the left is one tab stop; arrow keys, Home, and End move the selection. The selected game fills the rest of the screen with a large preview, its description, tags, vote, comments, and Play. The deck's joystick keys move the selection, the yellow button plays the selected game, the cyan button opens the rules, and the red coin button opens the submission form.
 - Phones don't get a scaled-down cabinet. The marquee shrinks, the menu becomes a column of full-width cards with 16:9 previews and their own actions, and the deck becomes a sticky bottom bar with Rules and Submit.
 - A game can appear in the menu, its phone card, and the selected-game screen at once. Vote and comment counts update on every copy.
 - The "N in 1" badge counts the games loaded so far, with a "+" when more pages exist. It is hidden on phones to keep the marquee lettering clear.
 - Comments are plain text in a service-menu dialog. There are no post numbers or quote styling.
-- Text on the CRT is at least 12px. Scanlines are kept faint so body text stays readable. Blinking and boot animations only run when reduced motion is off.
+- Text on the CRT is at least 12px. Blinking, the marquee's chaser bulbs, and boot animations only run when reduced motion is off.
 
 The initial scope is Hot, New, Submit, vote toggling, guidelines, and command-line moderation. Hot sorts by `(votes + 1) / (age in hours + 2)^1.35`. New sorts by submission time. Curated entries start with zero votes and link to the creator's AI attribution. Their time is when they were added here, not the game's release date.
 
