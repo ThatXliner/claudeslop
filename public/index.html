@@ -7,77 +7,204 @@
       name="description"
       content="Weird little games made with AI. Find something worth playing, vote for your favorites, and share what you made."
     />
-    <meta name="theme-color" content="#f5f5f3" />
+    <meta name="theme-color" content="#120a1f" />
     <title>Claudeslop — little games, made with AI</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/style.css?v=4" />
-    <script type="module" src="/app.js?v=4"></script>
+    <link rel="stylesheet" href="/style.css?v=5" />
+    <script type="module" src="/app.js?v=5"></script>
   </head>
   <body>
     <a class="skip" href="#feed">Skip to games</a>
-    <div class="shell">
-      <header>
-        <a href="/" class="brand" aria-label="Claudeslop home"
-          ><svg viewBox="0 0 28 28" width="28" height="28" aria-hidden="true">
-            <path
-              d="M5 8h18v12H5zM9 5h10M9 23h10M2 11v6M26 11v6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-            />
-            <path d="M9 14h6m-3-3v6" stroke="currentColor" stroke-width="2" />
-            <circle cx="20" cy="13" r="1.5" fill="currentColor" />
-            <circle cx="18" cy="17" r="1.5" fill="currentColor" /></svg
-          ><span>claudeslop<span class="brand-dot">.</span></span></a
-        >
-        <nav aria-label="Feed">
-          <a href="/#hot" data-sort="hot" aria-current="page">Hot</a
-          ><a href="/#new" data-sort="new">New</a>
-        </nav>
-        <button class="submit-button" id="open-submit">
-          Submit a game <span aria-hidden="true">↗</span>
-        </button>
-      </header>
-      <main>
-        <div class="intro">
-          <div>
-            <h1>Little games, made with AI.</h1>
-            <p>Weird ideas. Weekend projects. A few surprisingly good games.</p>
+    <div class="arcade">
+      <div class="cabinet">
+        <div class="side side-left" aria-hidden="true"></div>
+        <div class="side side-right" aria-hidden="true"></div>
+        <header class="marquee">
+          <div class="marquee-box">
+            <div class="marquee-light">
+              <a href="/" class="brand" aria-label="Claudeslop home"
+                ><svg
+                  class="logo"
+                  viewBox="-1 -1 63 11"
+                  shape-rendering="crispEdges"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <path
+                      id="logo-glyphs"
+                      d="M1 0h3v1h-3zM0 1h1v5h-1zM4 1h1v1h-1zM4 5h1v1h-1zM1 6h3v1h-3zM6 0h1v7h-1zM7 6h4v1h-4zM13 0h3v1h-3zM12 1h1v6h-1zM16 1h1v6h-1zM13 3h3v1h-3zM18 0h1v6h-1zM22 0h1v6h-1zM19 6h3v1h-3zM24 0h1v7h-1zM25 0h3v1h-3zM25 6h3v1h-3zM28 1h1v5h-1zM30 0h1v7h-1zM31 0h4v1h-4zM31 3h3v1h-3zM31 6h4v1h-4zM37 0h4v1h-4zM36 1h1v2h-1zM37 3h3v1h-3zM40 4h1v2h-1zM36 6h4v1h-4zM42 0h1v7h-1zM43 6h4v1h-4zM49 0h3v1h-3zM48 1h1v5h-1zM52 1h1v5h-1zM49 6h3v1h-3zM54 0h1v7h-1zM55 0h3v1h-3zM58 1h1v2h-1zM55 3h3v1h-3z"
+                    />
+                    <linearGradient
+                      id="logo-face"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="7"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stop-color="#fff27a" />
+                      <stop offset=".29" stop-color="#fff27a" />
+                      <stop offset=".29" stop-color="#ffb12e" />
+                      <stop offset=".58" stop-color="#ffb12e" />
+                      <stop offset=".58" stop-color="#ff4a2b" />
+                      <stop offset="1" stop-color="#ff4a2b" />
+                    </linearGradient>
+                  </defs>
+                  <use href="#logo-glyphs" x="-.5" y="-.5" fill="#1a0610" />
+                  <use href="#logo-glyphs" x=".5" y="-.5" fill="#1a0610" />
+                  <use href="#logo-glyphs" x="-.5" y=".5" fill="#1a0610" />
+                  <use href="#logo-glyphs" x="2" y="2" fill="#1a0610" />
+                  <use href="#logo-glyphs" x="1.5" y="1.5" fill="#5b0d2a" />
+                  <use href="#logo-glyphs" x="1" y="1" fill="#8e1438" />
+                  <use href="#logo-glyphs" x=".5" y=".5" fill="#c4203f" />
+                  <use href="#logo-glyphs" fill="url(#logo-face)" />
+                  <path
+                    d="M1 0h3v.34h-3zM6 0h1v.34h-1zM13 0h3v.34h-3zM18 0h1v.34h-1zM22 0h1v.34h-1zM24 0h4v.34h-4zM30 0h5v.34h-5zM37 0h4v.34h-4zM42 0h1v.34h-1zM49 0h3v.34h-3zM54 0h4v.34h-4z"
+                    fill="#fffde8"
+                  /></svg
+                ><span class="visually-hidden">Claudeslop</span></a
+              >
+              <h1 class="marquee-tag">Little games, made with AI</h1>
+              <span
+                class="in-one"
+                id="game-count"
+                aria-hidden="true"
+                hidden
+              ></span>
+            </div>
           </div>
-          <span class="intro-note">Less scrolling, more playing.</span>
+        </header>
+        <div class="bezel">
+          <div class="bezel-label" aria-hidden="true">
+            <span>Claudeslop</span><span>Game select</span>
+          </div>
+          <main class="screen">
+            <div class="screen-top">
+              <nav aria-label="Feed">
+                <a href="/#hot" data-sort="hot" aria-current="page">Hot</a
+                ><a href="/#new" data-sort="new">New</a>
+              </nav>
+              <div class="feed-heading">
+                <h2 id="feed-title">Hot games</h2>
+                <span id="sort-explanation"
+                  >Fresh games and community favorites.</span
+                >
+              </div>
+              <span class="free-play" aria-hidden="true">Free play</span>
+            </div>
+            <div class="select">
+              <div class="list-pane" id="list-pane">
+                <div
+                  id="feed"
+                  tabindex="-1"
+                  aria-busy="true"
+                  aria-labelledby="feed-title"
+                >
+                  <p class="empty">Loading the good slop…</p>
+                </div>
+                <button id="load-more" class="secondary" hidden>
+                  More games
+                </button>
+                <noscript
+                  ><p class="empty">
+                    This prototype needs JavaScript to load games and save
+                    votes.
+                  </p></noscript
+                >
+                <div id="feed-error" class="feed-error" hidden>
+                  <p role="alert" id="feed-error-text"></p>
+                  <button id="retry" class="secondary">Try again</button>
+                </div>
+              </div>
+              <section
+                id="detail"
+                class="detail"
+                aria-label="Selected game"
+              ></section>
+            </div>
+          </main>
         </div>
-        <div class="feed-heading">
-          <h2 id="feed-title">Hot games</h2>
-          <span id="sort-explanation"
-            >A mix of fresh games and community favorites.</span
-          >
+        <div class="deck">
+          <div class="deck-top">
+            <div class="stick-group">
+              <div class="stick" id="stick" aria-hidden="true">
+                <span class="stick-base"></span><span class="stick-shaft"></span
+                ><span class="stick-ball"></span>
+              </div>
+              <div class="stick-keys">
+                <button
+                  type="button"
+                  class="key"
+                  id="stick-up"
+                  aria-label="Select previous game"
+                >
+                  <svg viewBox="0 0 10 6" aria-hidden="true">
+                    <path d="M4 0h2v1h1v1h1v1h1v1h1v2H0V4h1V3h1V2h1V1h1z" />
+                  </svg></button
+                ><button
+                  type="button"
+                  class="key"
+                  id="stick-down"
+                  aria-label="Select next game"
+                >
+                  <svg viewBox="0 0 10 6" aria-hidden="true">
+                    <path d="M0 0h10v2H9v1H8v1H7v1H6v1H4V5H3V4H2V3H1V2H0z" />
+                  </svg>
+                </button>
+              </div>
+              <span class="deck-label">Select</span>
+            </div>
+            <div class="deck-buttons">
+              <a
+                class="arcade-button yellow"
+                id="start-play"
+                href="/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-disabled="true"
+                ><span class="cap" aria-hidden="true"><span></span></span
+                ><span class="deck-label">Play</span></a
+              >
+              <button type="button" class="arcade-button cyan" id="open-about">
+                <span class="cap" aria-hidden="true"><span></span></span
+                ><span class="deck-label">Rules</span>
+              </button>
+              <button
+                type="button"
+                class="arcade-button red coin"
+                id="open-submit"
+              >
+                <span class="cap" aria-hidden="true"><span></span></span
+                ><span class="deck-label"
+                  >Submit a game<small aria-hidden="true"
+                    >Insert coin</small
+                  ></span
+                >
+              </button>
+            </div>
+          </div>
+          <div class="deck-lip" aria-hidden="true"></div>
         </div>
-        <div id="feed" tabindex="-1" aria-busy="true">
-          <p class="empty">Loading the good slop…</p>
-        </div>
-        <button id="load-more" class="secondary" hidden>More games</button>
-        <noscript
-          ><p>
-            This prototype needs JavaScript to load games and save votes.
-          </p></noscript
-        >
-        <div id="feed-error" class="feed-error" hidden>
-          <p role="alert" id="feed-error-text"></p>
-          <button id="retry" class="secondary">Try again</button>
-        </div>
-      </main>
-      <footer>
-        <span>A home for the games you almost didn't ship.</span>
-        <div>
-          <button id="open-about" class="text-button">About & guidelines</button
-          ><a
-            href="https://github.com/ThatXliner/claudeslop"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub ↗</a
-          >
-        </div>
-      </footer>
+        <footer class="kick">
+          <div class="coin-door" aria-hidden="true">
+            <span class="coin-slot"><i></i><b>25¢</b></span
+            ><span class="coin-slot"><i></i><b>25¢</b></span>
+          </div>
+          <div class="kick-text">
+            <span>A home for the games you almost didn't ship.</span>
+            <div>
+              <button id="open-about-footer" class="text-button">
+                About & guidelines</button
+              ><a
+                href="https://github.com/ThatXliner/claudeslop"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub ↗</a
+              >
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
     <div id="toast" role="status" class="toast" hidden></div>
     <dialog id="submit-dialog" aria-labelledby="submit-title">
