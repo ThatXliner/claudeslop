@@ -1,6 +1,13 @@
-# Claudeslop
+<p align="center"><img src="brag-output/marquee.png" alt="Claudeslop — little games, made with AI" width="720"></p>
 
-A directory of little games made with AI. Find something worth playing, share what you made, and leave a comment. No account needed.
+<h1 align="center">Claudeslop</h1>
+
+<p align="center"><strong>A directory of little games made with AI.</strong><br>Find something worth playing, share what you made, and leave a comment. No account needed.</p>
+
+<p align="center">
+  <a href="https://claudeslop.bryanhu.com/"><img alt="Play and browse" src="https://img.shields.io/badge/play%20%26%20browse-claudeslop.bryanhu.com-ffd23f?labelColor=2a1b4a"></a>
+  <img alt="Node.js + SQLite" src="https://img.shields.io/badge/Node.js%20%2B%20SQLite-no%20runtime%20deps-6a3fb0">
+</p>
 
 **[Play and browse →](https://claudeslop.bryanhu.com/)**
 
