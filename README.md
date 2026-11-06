@@ -11,7 +11,7 @@
 
 
 <p align="center">
-  <a href="brag-output/brag.mp4"><img src="brag-output/brag.jpg" alt="Watch the 20-second Claudeslop video" width="720"></a>
+  <a href="https://youtu.be/QiOlB-_Og_E"><img src="brag-output/brag.jpg" alt="Watch the 20-second Claudeslop video" width="720"></a>
   <p align="center"><strong>A directory of little games made with AI.</strong><br>Find something worth playing, share what you made, and leave a comment. No account needed.</p>
 
 </p>
