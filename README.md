@@ -9,6 +9,11 @@
   <img alt="Node.js + SQLite" src="https://img.shields.io/badge/Node.js%20%2B%20SQLite-no%20runtime%20deps-6a3fb0">
 </p>
 
+<p align="center">
+  <a href="brag-output/brag.mp4"><img src="brag-output/brag.jpg" alt="Watch the 20-second Claudeslop video" width="720"></a>
+  <br><sub><a href="brag-output/brag.mp4">▶ Watch the 20-second video</a></sub>
+</p>
+
 **[Play and browse →](https://claudeslop.bryanhu.com/)**
 
 - Hot and New feeds with game previews and direct Play links.
